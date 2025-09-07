@@ -1,0 +1,129 @@
+{
+  "events": [
+    {
+      "id": "market_boom",
+      "name": "Market Boom",
+      "description": "The property market is booming! All rent charges are doubled.",
+      "duration": "round",
+      "probability": 0.15,
+      "effects": {
+        "rentMultiplier": 2,
+        "specialRules": ["All rent payments are doubled"]
+      },
+      "flavorText": "Prices are through the roof!",
+      "icon": "chart-up"
+    },
+    {
+      "id": "recession",
+      "name": "Economic Recession",
+      "description": "Hard times have hit! All payments are halved (rounded up).",
+      "duration": "round",
+      "probability": 0.15,
+      "effects": {
+        "rentMultiplier": 0.5,
+        "specialRules": ["All payments are halved (rounded up)"]
+      },
+      "flavorText": "Tighten those purse strings!",
+      "icon": "chart-down"
+    },
+    {
+      "id": "property_swap",
+      "name": "Property Shuffle",
+      "description": "A city-wide reorganization! Each player must trade one property with another player.",
+      "duration": "turn",
+      "probability": 0.12,
+      "effects": {
+        "specialRules": ["Each player must trade one property with another player"]
+      },
+      "flavorText": "Time to shuffle the deck!",
+      "icon": "shuffle"
+    },
+    {
+      "id": "free_pass_go",
+      "name": "Government Stimulus",
+      "description": "Everyone gets a boost! All players draw 2 extra cards.",
+      "duration": "turn",
+      "probability": 0.1,
+      "effects": {
+        "cardDrawBonus": 2,
+        "specialRules": ["All players draw 2 extra cards"]
+      },
+      "flavorText": "Free money for everyone!",
+      "icon": "gift"
+    },
+    {
+      "id": "rent_freeze",
+      "name": "Rent Control",
+      "description": "The government has imposed rent control! No rent can be charged this round.",
+      "duration": "round",
+      "probability": 0.08,
+      "effects": {
+        "rentMultiplier": 0,
+        "specialRules": ["No rent can be charged"]
+      },
+      "flavorText": "Rent is temporarily frozen!",
+      "icon": "ban"
+    },
+    {
+      "id": "speed_round",
+      "name": "Speed Trading",
+      "description": "Fast-paced trading! Players can play up to 5 cards this round instead of 3.",
+      "duration": "round",
+      "probability": 0.1,
+      "effects": {
+        "playLimitChange": 2,
+        "specialRules": ["Players can play up to 5 cards per turn"]
+      },
+      "flavorText": "Trade at lightning speed!",
+      "icon": "lightning"
+    },
+    {
+      "id": "monopoly_madness",
+      "name": "Monopoly Madness",
+      "description": "Complete sets are more valuable! Houses and hotels provide double bonuses.",
+      "duration": "round",
+      "probability": 0.08,
+      "effects": {
+        "specialRules": ["Houses provide +$6M rent instead of +$3M", "Hotels provide +$8M rent instead of +$4M"]
+      },
+      "flavorText": "Build that empire!",
+      "icon": "house"
+    },
+    {
+      "id": "chaos_auction",
+      "name": "Chaos Auction",
+      "description": "All players reveal their top card and auction it to the highest bidder!",
+      "duration": "turn",
+      "probability": 0.07,
+      "effects": {
+        "specialRules": ["All players reveal top card and auction it"]
+      },
+      "flavorText": "Going once, going twice...",
+      "icon": "hammer"
+    },
+    {
+      "id": "wild_west",
+      "name": "Wild West",
+      "description": "Lawless times! Action cards can't be blocked with 'Just Say No' this round.",
+      "duration": "round",
+      "probability": 0.06,
+      "effects": {
+        "specialRules": ["Just Say No cards cannot be played"]
+      },
+      "flavorText": "The law doesn't apply here!",
+      "icon": "cowboy"
+    },
+    {
+      "id": "lucky_day",
+      "name": "Lucky Day",
+      "description": "Fortune smiles upon you! The next action card played has double effect.",
+      "duration": "turn",
+      "probability": 0.09,
+      "effects": {
+        "specialRules": ["Next action card played has double effect"]
+      },
+      "flavorText": "Feeling lucky?",
+      "icon": "clover"
+    }
+  ]
+}

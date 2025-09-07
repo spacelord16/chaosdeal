@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-green-900 min-h-screen;
+    font-family: Arial, sans-serif;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow-lg border-2 border-gray-300 p-2 w-24 h-36 cursor-pointer transition-all duration-200 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .card-selected {
+    @apply ring-4 ring-blue-500 ring-opacity-50;
+  }
+
+  .card-money {
+    @apply bg-gradient-to-br from-green-100 to-green-200 border-green-400;
+  }
+
+  .card-property {
+    @apply bg-gradient-to-br from-blue-100 to-blue-200 border-blue-400;
+  }
+
+  .card-action {
+    @apply bg-gradient-to-br from-purple-100 to-purple-200 border-purple-400;
+  }
+
+  .game-board {
+    @apply bg-green-800 bg-opacity-80 rounded-xl p-6 backdrop-blur-sm border border-green-600;
+  }
+
+  .player-area {
+    @apply bg-black bg-opacity-20 rounded-lg p-4 border border-white border-opacity-20;
+  }
+
+  .chaos-banner {
+    @apply bg-red-600 text-white font-bold text-center py-2 px-4 rounded-lg shadow-lg animate-chaos-pulse;
+  }
+}
