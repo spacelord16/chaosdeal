@@ -1,8 +1,12 @@
 import { useState } from "react";
 import "./App.css";
+import GameBoard from "./components/GameBoard";
+import { useGameStore } from "./stores/gameStore";
 
 function App() {
   const [gameState, setGameState] = useState<"menu" | "lobby" | "game">("menu");
+  const [playerNames, setPlayerNames] = useState<string[]>(["Player 1"]);
+  const { initializeGame } = useGameStore();
 
   return (
     <div className="min-h-screen bg-green-900 text-white">
@@ -28,14 +32,14 @@ function App() {
                   onClick={() => setGameState("lobby")}
                   className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-200 shadow-lg"
                 >
-                  Create Game
+                  Start Single Player
                 </button>
 
                 <button
-                  onClick={() => setGameState("lobby")}
-                  className="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-200 shadow-lg"
+                  className="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-200 shadow-lg opacity-50 cursor-not-allowed"
+                  disabled
                 >
-                  Join Game
+                  Multiplayer (Coming Soon)
                 </button>
 
                 <button className="w-full bg-purple-500 hover:bg-purple-400 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-200 shadow-lg">
@@ -59,32 +63,37 @@ function App() {
         {gameState === "lobby" && (
           <div className="max-w-2xl mx-auto game-board">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-white mb-6">Game Lobby</h2>
+              <h2 className="text-3xl font-bold text-white mb-6">Setup Game</h2>
 
               <div className="bg-black bg-opacity-30 rounded-lg p-6 mb-6">
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">
-                  Room Code: DEMO123
+                  Single Player Mode
                 </h3>
-                <p className="text-gray-300">
-                  Share this code with your friends to join the game!
+                <p className="text-gray-300 mb-4">
+                  Practice the game mechanics and learn how to play. Multiplayer
+                  and AI opponents coming soon!
                 </p>
-              </div>
 
-              <div className="player-area mb-6">
-                <h3 className="text-lg font-bold text-white mb-4">
-                  Players (1/5)
-                </h3>
-                <div className="space-y-2">
-                  <div className="bg-white bg-opacity-10 rounded-lg p-3 flex items-center justify-between">
-                    <span className="text-white">You (Host)</span>
-                    <span className="text-green-400">Ready</span>
-                  </div>
+                <div className="mb-4">
+                  <label className="block text-white font-semibold mb-2">
+                    Your Name:
+                  </label>
+                  <input
+                    type="text"
+                    value={playerNames[0]}
+                    onChange={(e) => setPlayerNames([e.target.value])}
+                    className="w-full px-3 py-2 bg-gray-800 text-white rounded-lg border border-gray-600 focus:border-yellow-400 focus:outline-none"
+                    placeholder="Enter your name"
+                  />
                 </div>
               </div>
 
               <div className="space-y-4">
                 <button
-                  onClick={() => setGameState("game")}
+                  onClick={() => {
+                    initializeGame(playerNames);
+                    setGameState("game");
+                  }}
                   className="w-full bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-200 shadow-lg"
                 >
                   Start Game
@@ -94,51 +103,14 @@ function App() {
                   onClick={() => setGameState("menu")}
                   className="w-full bg-gray-500 hover:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-200"
                 >
-                  ← Back to Menu
+                  Back to Menu
                 </button>
               </div>
             </div>
           </div>
         )}
 
-        {gameState === "game" && (
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-white mb-2">
-                Game in Progress
-              </h2>
-              <div className="chaos-banner mb-4">
-                CHAOS EVENT: Market Boom - All rent is doubled!
-              </div>
-            </div>
-
-            {/* Placeholder for game board */}
-            <div className="game-board">
-              <div className="text-center">
-                <h3 className="text-xl font-bold text-white mb-4">
-                  Game Board Coming Soon!
-                </h3>
-                <p className="text-gray-300 mb-6">
-                  This is where the magic will happen. The game board will show:
-                </p>
-                <ul className="text-left text-gray-300 space-y-2 max-w-md mx-auto">
-                  <li>- Your hand of cards</li>
-                  <li>- Property sets on the table</li>
-                  <li>- Money in your bank</li>
-                  <li>- Other players' areas</li>
-                  <li>- Active chaos events</li>
-                </ul>
-
-                <button
-                  onClick={() => setGameState("menu")}
-                  className="mt-6 bg-gray-500 hover:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-200"
-                >
-                  ← Back to Menu
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {gameState === "game" && <GameBoard />}
 
         <footer className="text-center mt-12 text-green-300">
           <p className="text-sm">
